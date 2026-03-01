@@ -38,7 +38,6 @@ import FlapReducer from "./flap_reducer";
 import JoinGameReducer from "./join_game_reducer";
 import RequestStartReducer from "./request_start_reducer";
 import SetReadyReducer from "./set_ready_reducer";
-import TickReducer from "./tick_reducer";
 
 // Import all procedure arg schemas
 
@@ -46,7 +45,9 @@ import TickReducer from "./tick_reducer";
 import BirdRow from "./bird_table";
 import GameConfigRow from "./game_config_table";
 import PipeRow from "./pipe_table";
+import PipePassedRow from "./pipe_passed_table";
 import PlayerRow from "./player_table";
+import RoundResultRow from "./round_result_table";
 import SessionRow from "./session_table";
 
 /** Type-only namespace exports for generated type groups. */
@@ -86,6 +87,17 @@ const tablesSchema = __schema({
       { name: 'pipe_id_key', constraint: 'unique', columns: ['id'] },
     ],
   }, PipeRow),
+  pipe_passed: __table({
+    name: 'pipe_passed',
+    indexes: [
+      { name: 'id', algorithm: 'btree', columns: [
+        'id',
+      ] },
+    ],
+    constraints: [
+      { name: 'pipe_passed_id_key', constraint: 'unique', columns: ['id'] },
+    ],
+  }, PipePassedRow),
   player: __table({
     name: 'player',
     indexes: [
@@ -97,6 +109,17 @@ const tablesSchema = __schema({
       { name: 'player_identity_key', constraint: 'unique', columns: ['identity'] },
     ],
   }, PlayerRow),
+  round_result: __table({
+    name: 'round_result',
+    indexes: [
+      { name: 'id', algorithm: 'btree', columns: [
+        'id',
+      ] },
+    ],
+    constraints: [
+      { name: 'round_result_id_key', constraint: 'unique', columns: ['id'] },
+    ],
+  }, RoundResultRow),
   session: __table({
     name: 'session',
     indexes: [
@@ -116,7 +139,6 @@ const reducersSchema = __reducers(
   __reducerSchema("join_game", JoinGameReducer),
   __reducerSchema("request_start", RequestStartReducer),
   __reducerSchema("set_ready", SetReadyReducer),
-  __reducerSchema("tick", TickReducer),
 );
 
 /** The schema information for all procedures in this module. This is defined the same way as the procedures would have been defined in the server. */

@@ -15,4 +15,5 @@ export default __t.row({
   state: __t.string(),
   roundNumber: __t.u32().name("round_number"),
   startedAt: __t.u64().name("started_at"),
+  pipesSpawned: __t.u32().name("pipes_spawned"),
 });

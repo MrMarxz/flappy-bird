@@ -21,7 +21,15 @@
       "Bash(cargo build --target wasm32-unknown-unknown)",
       "Bash(spacetime publish -p ./spacetimedb flappy -y)",
       "Bash(spacetime generate --lang typescript --out-dir src/module_bindings -p server/flappy/spacetimedb -y)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Read(//c/Users/Work/.cargo/registry/src/**)",
+      "Bash(xargs grep -l \"Timestamp\")",
+      "Bash(xargs grep -l \"fn from_micros_since_unix_epoch\\\\|struct Timestamp\")",
+      "Bash(xargs grep -l \"struct Identity\")",
+      "Bash(spacetime publish -p ./spacetimedb flappy -y --delete-data)",
+      "Bash(xargs grep -l \"onInsert\\\\|iter\\\\|DbConnectionImpl\")",
+      "Bash(xargs grep -l \"onInsert\\\\|iter\\\\|TableCache\")",
+      "Bash(xargs grep -l \"DbConnectionImpl\\\\|onInsert\\\\|TableWithCallbacks\")"
     ]
   }
 }

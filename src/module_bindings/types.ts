@@ -38,6 +38,13 @@ export const Pipe = __t.object("Pipe", {
 });
 export type Pipe = __Infer<typeof Pipe>;
 
+export const PipePassed = __t.object("PipePassed", {
+  id: __t.u64(),
+  pipeId: __t.u32(),
+  playerIdentity: __t.identity(),
+});
+export type PipePassed = __Infer<typeof PipePassed>;
+
 export const Player = __t.object("Player", {
   identity: __t.identity(),
   username: __t.string(),
@@ -49,11 +56,27 @@ export const Player = __t.object("Player", {
 });
 export type Player = __Infer<typeof Player>;
 
+export const RoundResult = __t.object("RoundResult", {
+  id: __t.u32(),
+  winnerIdentity: __t.identity(),
+  winnerScore: __t.u32(),
+  roundNumber: __t.u32(),
+  endedAt: __t.u64(),
+});
+export type RoundResult = __Infer<typeof RoundResult>;
+
 export const Session = __t.object("Session", {
   id: __t.u32(),
   state: __t.string(),
   roundNumber: __t.u32(),
   startedAt: __t.u64(),
+  pipesSpawned: __t.u32(),
 });
 export type Session = __Infer<typeof Session>;
+
+export const TickSchedule = __t.object("TickSchedule", {
+  scheduledId: __t.u64(),
+  scheduledAt: __t.scheduleAt(),
+});
+export type TickSchedule = __Infer<typeof TickSchedule>;
 

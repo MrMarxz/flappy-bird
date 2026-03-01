@@ -12,34 +12,13 @@ export default function GameCanvasInner() {
     if (typeof window === "undefined") return;
     if (gameRef.current) return;
 
-    // Dynamically import Phaser to avoid SSR issues
-    void import("phaser").then((Phaser) => {
-      // Guard against Strict Mode second invocation completing after cleanup
+    // Dynamically import Phaser + GameScene to avoid SSR issues
+    void Promise.all([
+      import("phaser"),
+      import("@/game/scenes/GameScene"),
+    ]).then(([Phaser, { GameScene }]) => {
+      // Guard against Strict Mode double-invocation completing after cleanup
       if (gameRef.current) return;
-
-      class BootScene extends Phaser.Scene {
-        private statusText!: Phaser.GameObjects.Text;
-
-        constructor() {
-          super({ key: "BootScene" });
-        }
-
-        create() {
-          this.statusText = this.add
-            .text(240, 320, "Connecting…", {
-              fontSize: "24px",
-              color: "#ffffff",
-              fontFamily: "Arial",
-            })
-            .setOrigin(0.5);
-        }
-
-        setConnected() {
-          this.statusText.setText("Connected!");
-        }
-      }
-
-      const bootScene = new BootScene();
 
       const config: Phaser.Types.Core.GameConfig = {
         type: Phaser.AUTO,
@@ -47,7 +26,7 @@ export default function GameCanvasInner() {
         height: 640,
         parent: containerRef.current ?? undefined,
         backgroundColor: "#70c5ce",
-        scene: bootScene,
+        scene: new GameScene(),
       };
 
       gameRef.current = new Phaser.Game(config);
@@ -59,11 +38,9 @@ export default function GameCanvasInner() {
         host,
         moduleName,
         () => {
-          // onConnect — update the BootScene text
-          bootScene.setConnected();
+          console.log("[GameCanvas] SpacetimeDB connected");
         },
         () => {
-          // onDisconnect
           console.log("[GameCanvas] SpacetimeDB disconnected");
         },
       );

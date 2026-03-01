@@ -9,7 +9,7 @@
 | Phase | Title | Status |
 |-------|-------|--------|
 | 1 | Project Scaffold & SpacetimeDB Module Skeleton | ✅ |
-| 2 | Core Game Loop (Server-Authoritative, Single Bird) | ⬜ |
+| 2 | Core Game Loop (Server-Authoritative, Single Bird) | ✅ |
 | 3 | Multiplayer Session & Lobby | ⬜ |
 | 4 | Death, Spectate & Round Resolution | ⬜ |
 | 5 | UI, Polish & Juice | ⬜ |
@@ -145,6 +145,8 @@ The game looks and feels complete. Menus, sounds, effects, readable UI.
 - [ ] Score counter animates on increment
 - [ ] "You are the last bird!" text briefly when second-to-last bird dies
 - [ ] Mobile touch support: tap anywhere to flap
+- [ ] Client-side prediction for flap input: immediately apply flap_force to local velocity_y on Space/tap, render predicted position until next server update arrives
+- [ ] Server reconciliation: when Bird row update arrives, smoothly blend predicted position toward authoritative server position over 2-3 frames rather than snapping
 - [ ] `npm run build` passes
 - [ ] Opus audit → STATUS: APPROVED
 - [ ] Mark phase ✅ in ROADMAP.md

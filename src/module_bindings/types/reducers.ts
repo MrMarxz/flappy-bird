@@ -10,11 +10,9 @@ import FlapReducer from "../flap_reducer";
 import JoinGameReducer from "../join_game_reducer";
 import RequestStartReducer from "../request_start_reducer";
 import SetReadyReducer from "../set_ready_reducer";
-import TickReducer from "../tick_reducer";
 
 export type FlapParams = __Infer<typeof FlapReducer>;
 export type JoinGameParams = __Infer<typeof JoinGameReducer>;
 export type RequestStartParams = __Infer<typeof RequestStartReducer>;
 export type SetReadyParams = __Infer<typeof SetReadyReducer>;
-export type TickParams = __Infer<typeof TickReducer>;
 
