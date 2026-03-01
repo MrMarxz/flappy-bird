@@ -6,11 +6,22 @@
         "hooks": [
           {
             "type": "agent",
-            "model": "claude-opus-4-6",
-            "prompt": "A Claude Code session for the multiplayer Flappy Bird project has just stopped. Your job is to verify the session ended cleanly and the current phase is in a valid state.\n\nCheck ROADMAP.md to identify the current active phase. Review recent file changes. Verify:\n- npm run build passes (no TypeScript errors)\n- server/ Rust module compiles (cargo build)\n- All architectural rules from CLAUDE.md are respected\n- The phase checklist items are genuinely complete, not just stubbed\n- ROADMAP.md phase status reflects the true state of the work\n\nIf everything checks out and the phase was already marked approved via the Task tool audit, confirm and stand down.\n\nIf the session stopped prematurely or the phase is incomplete, return STATUS: ISSUES with a clear list of what remains so the next session can pick up cleanly."
+            "model": "claude-opus-4-6"
           }
         ]
       }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm install phaser spacetimedb)",
+      "Bash(npm install phaser spacetimedb --save)",
+      "Bash(rustup override set stable-x86_64-pc-windows-gnu)",
+      "Bash(rustup target add wasm32-unknown-unknown --toolchain stable-x86_64-pc-windows-gnu)",
+      "Bash(cargo build --target wasm32-unknown-unknown)",
+      "Bash(spacetime publish -p ./spacetimedb flappy -y)",
+      "Bash(spacetime generate --lang typescript --out-dir src/module_bindings -p server/flappy/spacetimedb -y)",
+      "Bash(npm run build)"
     ]
   }
 }

@@ -20,33 +20,38 @@ This section captures all Windows-specific and Rust toolchain discoveries from t
 # Install the GNU toolchain (if not already installed)
 rustup toolchain install stable-x86_64-pc-windows-gnu
 
-# Set it as the override for the SpacetimeDB project directory
-cd server/spacetimedb
+# Set it as the override for this project's SpacetimeDB module directory
+cd server/flappy/spacetimedb
 rustup override set stable-x86_64-pc-windows-gnu
 
 # Add the wasm32 target to the GNU toolchain (required for SpacetimeDB compilation)
 rustup target add wasm32-unknown-unknown --toolchain stable-x86_64-pc-windows-gnu
 ```
 
-The override is stored per-directory in rustup's override table and applies automatically when in `server/spacetimedb/`. It does **not** affect other Rust projects on the machine.
+The override is stored per-directory in rustup's override table and applies automatically when in `server/flappy/spacetimedb/`. It does **not** affect other Rust projects on the machine.
+
+**Status for this project:** Override already set and wasm32 target already installed. Both confirmed working in Phase 1.
 
 ### SpacetimeDB CLI — Windows Gotchas
 
 - `--project-path` flag is **invalid** on the installed CLI version — always use the short form `-p`
 - Always pass `-y` to skip interactive confirmation prompts (required in non-TTY contexts like Claude Code)
-- The Rust module lives in `server/spacetimedb/` — CLI commands are run from `server/` using `-p ./spacetimedb`
+- The Rust module lives in `server/flappy/spacetimedb/` — CLI commands are run from `server/flappy/` using `-p ./spacetimedb`
 
 **Canonical commands (use these, not the long-form variants):**
 
 ```bash
 # Publish to Maincloud
-cd server && spacetime publish -p ./spacetimedb agario -y
+cd server/flappy && spacetime publish -p ./spacetimedb flappy -y
 
 # Publish with schema migration — drops all table data (required when adding/removing columns)
-cd server && spacetime publish -p ./spacetimedb agario -y --delete-data
+cd server/flappy && spacetime publish -p ./spacetimedb flappy -y --delete-data
 
 # Regenerate TypeScript bindings (run from project root)
-spacetime generate --lang typescript --out-dir src/module_bindings -p server/spacetimedb -y
+spacetime generate --lang typescript --out-dir src/module_bindings -p server/flappy/spacetimedb -y
+
+# Cargo build check (wasm32 target)
+cd server/flappy/spacetimedb && cargo build --target wasm32-unknown-unknown
 ```
 
 ### SpacetimeDB Maincloud Connection

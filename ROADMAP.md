@@ -8,7 +8,7 @@
 ## Phase Status
 | Phase | Title | Status |
 |-------|-------|--------|
-| 1 | Project Scaffold & SpacetimeDB Module Skeleton | ⬜ |
+| 1 | Project Scaffold & SpacetimeDB Module Skeleton | ✅ |
 | 2 | Core Game Loop (Server-Authoritative, Single Bird) | ⬜ |
 | 3 | Multiplayer Session & Lobby | ⬜ |
 | 4 | Death, Spectate & Round Resolution | ⬜ |
@@ -17,7 +17,7 @@
 
 ---
 
-## Phase 1 — Project Scaffold & SpacetimeDB Module Skeleton ⬜
+## Phase 1 — Project Scaffold & SpacetimeDB Module Skeleton ✅
 
 ### Goals
 Bootstrap the full project structure. No game logic. Verify the client connects to the SpacetimeDB module and can call a test reducer.

@@ -1,0 +1,1 @@
+C:\Users\Work\Desktop\GIT\FLAPPY-BIRD-AI\flappy-bird\server\flappy\spacetimedb\target\wasm32-unknown-unknown\debug\_.wasm: C:\Users\Work\Desktop\GIT\FLAPPY-BIRD-AI\flappy-bird\server\flappy\spacetimedb\src\lib.rs
