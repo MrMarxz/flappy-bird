@@ -50,7 +50,7 @@ Bootstrap the full project structure. No game logic. Verify the client connects 
 
 ---
 
-## Phase 2 — Core Game Loop (Server-Authoritative, Single Bird) ⬜
+## Phase 2 — Core Game Loop (Server-Authoritative, Single Bird) ✅
 
 ### Goals
 One player can join, the game starts, pipes scroll, gravity pulls the bird down, flapping sends a reducer call, server updates bird state each tick, client renders it. Server detects collision and marks player dead.
